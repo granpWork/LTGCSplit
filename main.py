@@ -11,6 +11,7 @@ from openpyxl.styles.borders import Border, Side
 
 from openpyxl.styles import PatternFill
 from openpyxl.styles.colors import WHITE
+from openpyxl.styles import Border, Side
 
 
 
@@ -27,6 +28,15 @@ def duplicateTemplateLTGC(tempLTGC_Path, out, compCode):
     return companyDir + "/LTGC_CEIRMasterlist_ExtraCols_" + compCode + ".xlsx"
 
 
+def set_border(ws, cell_range):
+    thin = Side(border_style="thin", color="000000")
+    for row in ws[cell_range]:
+        for cell in row:
+            cell.border = Border(top=thin, left=thin, right=thin, bottom=thin)
+
+    pass
+
+
 def getData(inFile_LTGC, outPath):
     print("============================")
     print("Starting LTGC Files")
@@ -34,7 +44,7 @@ def getData(inFile_LTGC, outPath):
     util = Utils()
     df = pd.read_excel(inFile_LTGC, sheet_name='Eligible Population',
                        header=1, dtype={'PhilHealth_ID*': str, 'Contact_number_of_employer*': str,
-                                        'Contact_No.*': str}, na_filter=False)
+                                        'Contact_No.*': str, 'Age': str}, na_filter=False)
 
     groups = df.groupby('Company')
 
@@ -62,9 +72,11 @@ def getData(inFile_LTGC, outPath):
         util.addingDataValidation(currentSheet, numrows)
 
         # set cell border: has 75 cols
-        for row in range(2, numrows + 3):
-            for col in range(1, 75):
-                currentSheet.cell(row=row, column=col).border = thin_border
+        # for row in range(2, numrows + 3):
+        #     for col in range(1, 77):
+        #         currentSheet.cell(row=row, column=col).border = thin_border
+
+        set_border(currentSheet, "A3:BX" + str(numrows + 2))
 
         ## Set bg color in a cell
         # currentSheet.cell(row=3, column=33).fill = PatternFill(start_color="ffffff", fill_type = "solid")
@@ -96,7 +108,8 @@ if __name__ == '__main__':
     outPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/out/ltgc"
     templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/template"
 
-    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
+    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
 
     tempLTGC_Path = templateFilePath + "/LTGC_CEIRMasterlist_ExtraCols.xlsx"
 

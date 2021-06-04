@@ -41,7 +41,7 @@ class Utils:
             'STN': 'Sabre Travel Network Phils., Inc.',
             'PAN': 'Pan Asia Securities',
             'ANA': 'All Nippon Airways',
-            'LTC': 'LUCKY TRAVEL CORPORATION',
+            'LTC': 'Lucky Travel Corporation',
         }
         company_Code = ""
         for key, value in companyDict.items():

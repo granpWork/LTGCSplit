@@ -76,7 +76,8 @@ def getData(inFile_LTGC, outPath):
         #     for col in range(1, 77):
         #         currentSheet.cell(row=row, column=col).border = thin_border
 
-        set_border(currentSheet, "A3:BX" + str(numrows + 2))
+        # set_border(currentSheet, "A3:BX" + str(numrows + 2))
+        set_border(currentSheet, "A3:BV" + str(numrows + 2))
 
         ## Set bg color in a cell
         # currentSheet.cell(row=3, column=33).fill = PatternFill(start_color="ffffff", fill_type = "solid")
@@ -106,10 +107,10 @@ if __name__ == '__main__':
 
     inPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/in"
     outPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/out/ltgc"
-    templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/template"
+    templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGwp/template"
 
-    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
-    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
+    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
 
     tempLTGC_Path = templateFilePath + "/LTGC_CEIRMasterlist_ExtraCols.xlsx"
 

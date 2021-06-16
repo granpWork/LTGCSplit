@@ -42,6 +42,7 @@ class Utils:
             'PAN': 'Pan Asia Securities',
             'ANA': 'All Nippon Airways',
             'LTC': 'Lucky Travel Corporation',
+            'OGC': 'OGC'
         }
         company_Code = ""
         for key, value in companyDict.items():

@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     inPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/in"
     outPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/out/ltgc"
-    templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGwp/template"
+    templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/template"
 
     # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
     inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"

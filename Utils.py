@@ -60,9 +60,9 @@ class Utils:
             os.mkdir(os.path.join(out, compCode))
 
         shutil.copy(tempLTGC_Path,
-                    companyDir + "/" + companyName + "_EMP3P.xlsx")
+                    companyDir + "/" + companyName + "_EMP_MODERNA.xlsx")
 
-        return companyDir + "/" + companyName + "_EMP3P.xlsx"
+        return companyDir + "/" + companyName + "_EMP_MODERNA.xlsx"
 
     @staticmethod
     def addingDataValidation(currentSheet, numrows):

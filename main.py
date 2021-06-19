@@ -14,7 +14,6 @@ from openpyxl.styles.colors import WHITE
 from openpyxl.styles import Border, Side
 
 
-
 def duplicateTemplateLTGC(tempLTGC_Path, out, compCode):
     companyDir = out + "/" + compCode
 
@@ -110,7 +109,9 @@ if __name__ == '__main__':
     templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/template"
 
     # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
-    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_Batch1.xlsx"
+    inFile_LTGC = inPath + "/LTGC_QSL.xlsx"
 
     tempLTGC_Path = templateFilePath + "/LTGC_CEIRMasterlist_ExtraCols.xlsx"
 

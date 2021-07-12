@@ -43,55 +43,61 @@ def getData(inFile_LTGC, outPath):
     util = Utils()
     df = pd.read_excel(inFile_LTGC, sheet_name='Eligible Population',
                        header=1, dtype={'PhilHealth_ID*': str, 'Contact_number_of_employer*': str,
-                                        'Contact_No.*': str, 'Age': str}, na_filter=False)
+                                        'Contact_No.*': str, 'Age': str, 'Company': str}, na_filter=False)
+
+    # df = pd.read_excel(inFile_LTGC, sheet_name='a3_54',
+    #                    header=1, dtype={'PhilHealth_ID*': str, 'Contact_number_of_employer*': str,
+    #                                     'Contact_No.*': str, 'Age': str}, na_filter=False)
+
 
     groups = df.groupby('Company')
 
     for i, comp in groups:
-        # companyCode = companyNameLookUp(i)
-        companyCode = util.companyNameLookUpMethod(i)
+        if i == "Philippine Airlines, Inc. (PAL), Subsidiaries and Affiliates":
+            # companyCode = companyNameLookUp(i)
+            companyCode = util.companyNameLookUpMethod(i)
 
-        comp = comp.astype(str)
+            comp = comp.astype(str)
 
-        # get num rows
-        numrows = len(comp.index)
+            # get num rows
+            numrows = len(comp.index)
 
-        print(i + ' (' + companyCode + ") has " + str(numrows) + " records", end='')
+            print(i + ' (' + companyCode + ") has " + str(numrows) + " records", end='')
 
-        templateFile = util.duplicateTemplateLTGC(tempLTGC_Path, outPath, companyCode, i)
+            templateFile = util.duplicateTemplateLTGC(tempLTGC_Path, outPath, companyCode, i)
 
-        # border settings
-        thin_border = Border(left=Side(style='thin'),
-                             right=Side(style='thin'),
-                             top=Side(style='thin'),
-                             bottom=Side(style='thin'))
+            # border settings
+            thin_border = Border(left=Side(style='thin'),
+                                 right=Side(style='thin'),
+                                 top=Side(style='thin'),
+                                 bottom=Side(style='thin'))
 
-        theFile = openpyxl.load_workbook(templateFile)
-        currentSheet = theFile["Eligible Population"]
-        util.addingDataValidation(currentSheet, numrows)
+            theFile = openpyxl.load_workbook(templateFile)
+            currentSheet = theFile["Eligible Population"]
+            util.addingDataValidation(currentSheet, numrows)
 
-        # set cell border: has 75 cols
-        # for row in range(2, numrows + 3):
-        #     for col in range(1, 77):
-        #         currentSheet.cell(row=row, column=col).border = thin_border
+            # set cell border: has 75 cols
+            # for row in range(2, numrows + 3):
+            #     for col in range(1, 77):
+            #         currentSheet.cell(row=row, column=col).border = thin_border
 
-        # set_border(currentSheet, "A3:BX" + str(numrows + 2))
-        set_border(currentSheet, "A3:BV" + str(numrows + 2))
+            # set_border(currentSheet, "A3:BX" + str(numrows + 2))
+            set_border(currentSheet, "A3:BV" + str(numrows + 2))
 
-        ## Set bg color in a cell
-        # currentSheet.cell(row=3, column=33).fill = PatternFill(start_color="ffffff", fill_type = "solid")
+            ## Set bg color in a cell
+            # currentSheet.cell(row=3, column=33).fill = PatternFill(start_color="ffffff", fill_type = "solid")
 
-        theFile.save(templateFile)
+            theFile.save(templateFile)
 
-        writer = pd.ExcelWriter(templateFile, engine='openpyxl', mode='a')
-        writer.book = load_workbook(templateFile)
-        writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
-        comp.to_excel(writer, "Eligible Population", startrow=2, header=False, index=False)
-        writer.save()
+            writer = pd.ExcelWriter(templateFile, engine='openpyxl', mode='a')
+            writer.book = load_workbook(templateFile)
+            writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+            comp.to_excel(writer, "Eligible Population", startrow=2, header=False, index=False)
+            writer.save()
 
-        print(".....Done!")
+            print(".....Done!")
 
-        # print(comp)
+            # print(comp)
 
     pass
 
@@ -104,20 +110,37 @@ if __name__ == '__main__':
     today = datetime.today()
     dateTime = today.strftime("%m_%d_%y_%H%M%S")
 
-    inPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/in"
-    outPath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/out/ltgc"
-    templateFilePath = r"/Users/ranperedo/Documents/Vaccine/LTGSplit/template"
+    inPath = r"/Users/Ran/Documents/Vaccine/LTGSplit/in"
+    outPath = r"/Users/Ran/Documents/Vaccine/LTGSplit/out/ltgc"
+    templateFilePath = r"/Users/Ran/Documents/Vaccine/LTGSplit/template"
 
     # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_Combined.xlsx"
     # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist.xlsx"
     # inFile_LTGC = inPath + "/LTGC_Batch1.xlsx"
-    inFile_LTGC = inPath + "/LTGC_QSL.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_QSL.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_AZ.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A354.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_MODERNA.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A354_Substitution.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_Moderna_A353Substitution.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A353Substitution_batch2.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A352.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A351.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A349.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A348.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A347.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A346.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A345.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_A344.xlsx"
+    # inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_AZ_0705_0822PM.xlsx"
+    inFile_LTGC = inPath + "/LTGC_CEIRMasterlist_AZ_0705_1044PM.xlsx"
 
     tempLTGC_Path = templateFilePath + "/LTGC_CEIRMasterlist_ExtraCols.xlsx"
 
     # Excel Templates: create copy
 
     print("Split File Script......")
+    print(inFile_LTGC)
 
     if path.exists(inFile_LTGC) and path.isfile(inFile_LTGC):
         getData(inFile_LTGC, outPath)

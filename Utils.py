@@ -53,16 +53,26 @@ class Utils:
 
     @staticmethod
     def duplicateTemplateLTGC(tempLTGC_Path, out, compCode, companyName):
-        companyDir = out + "/" + compCode
+        companyDir = out + "/"
 
-        # creating new DIR base on company code
-        if not path.exists(out + "/" + compCode):
-            os.mkdir(os.path.join(out, compCode))
+        # # creating new DIR base on company code
+        # if not path.exists(out + "/" + compCode):
+        #     os.mkdir(os.path.join(out, compCode))
+
+        # shutil.copy(tempLTGC_Path,
+        #             companyDir + "/" + companyName + "_EMP3P_AZ.xlsx")
+
+        # return companyDir + "/" + companyName + "_EMP3P_AZ.xlsx"
+
+        # shutil.copy(tempLTGC_Path,
+        #             companyDir + "/" + companyName + "_LTGC_A344.xlsx")
+        #
+        # return companyDir + "/" + companyName + "_LTGC_A344.xlsx"
 
         shutil.copy(tempLTGC_Path,
-                    companyDir + "/" + companyName + "_EMP_MODERNA.xlsx")
+                    companyDir + "/" + companyName + "_EMP3P_AZ.xlsx")
 
-        return companyDir + "/" + companyName + "_EMP_MODERNA.xlsx"
+        return companyDir + "/" + companyName + "_EMP3P_AZ.xlsx"
 
     @staticmethod
     def addingDataValidation(currentSheet, numrows):

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LTGSplitFile_From_Zuellig.iml" filepath="$PROJECT_DIR$/.idea/LTGSplitFile_From_Zuellig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SendSMS_NexmoDemoAPI/.idea/SendSMS_NexmoDemoAPI.iml" filepath="$PROJECT_DIR$/../SendSMS_NexmoDemoAPI/.idea/SendSMS_NexmoDemoAPI.iml" />
     </modules>
   </component>
 </project>
